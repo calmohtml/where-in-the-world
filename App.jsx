@@ -29,30 +29,6 @@ BASE_URL + /region/{region},
 BASE_URL + /subregion/{region} 
 */
 
-/* data.map((country) => (
-    <li key={country.alpha3Code}>
-      <Link
-        passHref
-        href={`/${country.region.toLowerCase()}/${country.alpha3Code.toLowerCase()}`}
-      >
-        <h2>
-          <a>{`${country.name}`}</a>
-        </h2>
-      </Link>
-      <Image
-        src={country.flag}
-        alt={`Flag of ${country.name}`}
-        width={250}
-        height={250}
-        objectFit="contain"
-        objectPosition="center"
-        loading="eager"
-        quality={50}
-        placeholder="empty"
-      />
-    </li>
-  )); */
-
 {
   /* <View style={styles.container}>
       {loading ? (
@@ -81,14 +57,5 @@ BASE_URL + /subregion/{region}
       </Text>
     )}
   /> 
-
-  data.map(({ cca3, name, population, region, capital }) => (
-          <View key={cca3}>
-            <Text>{name.common}</Text>
-            <Text>Population: {population}</Text>
-            <Text>Region: {region}</Text>
-            <Text>Capital: {capital}</Text>
-          </View>
-        ))
   */
 }

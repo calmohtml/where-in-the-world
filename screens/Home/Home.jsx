@@ -1,9 +1,7 @@
 import {
-  View,
   Text,
   StyleSheet,
   ActivityIndicator,
-  FlatList,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
@@ -23,6 +21,7 @@ export default function Home({ navigation }) {
   /* https://restcountries.com/v3.1/name/${name.common}?fullText=true */
   const BASE_URL = "https://restcountries.com/v3.1/";
   const url = BASE_URL + "/all";
+  const numbro = require("numbro");
 
   /* const { data, loading, error } = useFetch(url); */
 
@@ -52,7 +51,7 @@ export default function Home({ navigation }) {
     <>
       <SearchBar />
       {loading ? (
-        <ActivityIndicator />
+        <ActivityIndicator size="large" color="#00ff00" />
       ) : (
         <ScrollView style={styles.countrylist}>
           {data.map(({ cca3, name, population, region, capital }) => (
@@ -69,7 +68,10 @@ export default function Home({ navigation }) {
               }}
             >
               <Text>{name.common}</Text>
-              <Text>Population: {population}</Text>
+              <Text>
+                Population:{" "}
+                {numbro(population).format({ thousandSeparated: true })}
+              </Text>
               <Text>Region: {region}</Text>
               <Text>Capital: {capital}</Text>
             </TouchableOpacity>
