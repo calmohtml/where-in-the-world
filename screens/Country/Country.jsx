@@ -1,11 +1,13 @@
-import { View, Text, Button, ActivityIndicator } from "react-native";
+import { View, Text, Button, ActivityIndicator, Image } from "react-native";
 import { useState, useEffect } from "react";
 
 export default function Country({ route, navigation }) {
   const { countryName } = route.params;
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
   const BASE_URL = "https://restcountries.com/v3.1/";
   const url = BASE_URL + `/name/${countryName}?fullText=true`;
   const numbro = require("numbro");
@@ -49,10 +51,15 @@ export default function Country({ route, navigation }) {
               tld,
               currencies,
               languages,
+              flags,
               name: { common, nativeName },
             }) => (
               <View key={cca3}>
                 <Text>{common}</Text>
+                <Image
+                  source={{ uri: `${flags.png}` }}
+                  style={{ width: 40, height: 40 }}
+                />
                 <Text>Native name: {Object.values(nativeName)[0].common}</Text>
                 <Text>
                   Population:{" "}

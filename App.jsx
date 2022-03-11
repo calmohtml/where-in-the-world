@@ -16,36 +16,6 @@ export default function App() {
   );
 }
 
-/* 
-Variables:
-
-BASE_URL + /all, 
-BASE_URL + /name/{name}, 
-BASE_URL + /alpha/{code}, 
-BASE_URL + /currency/{currency}, 
-BASE_URL + /lang/{lang}, 
-BASE_URL + /capital/{capital}, 
-BASE_URL + /region/{region}, 
-BASE_URL + /subregion/{region} 
-*/
-
-{
-  /* <View style={styles.container}>
-      {loading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={data}
-          keyExtractor={country.cca3}
-          renderItem={(country) => (
-            <Text>
-              {country.name.common}, {country.region.toLowerCase()}
-            </Text>
-          )}
-        />
-      )}
-    </View> */
-}
 {
   /* 
   <FlatList
