@@ -2,24 +2,21 @@ import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 import styled from "styled-components/native";
 
-export default function SearchBar() {
-  const Container = styled.View`
+export default function Header() {
+  const Header = styled.View`
+    background-color: red;
     height: 60px;
-    width: 100%;
-    background: red;
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
     flex-direction: row;
-    padding: 30px 10px;
+    justify-content: space-between;
+    align-items: center;
   `;
 
   return (
-    <Container>
+    <Header>
       <Text>Where in the world?</Text>
       <TouchableOpacity>
         <Text>Dark Mode</Text>
       </TouchableOpacity>
-    </Container>
+    </Header>
   );
 }

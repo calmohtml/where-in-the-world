@@ -3,11 +3,9 @@ import { useState, useEffect } from "react";
 
 export default function Country({ route, navigation }) {
   const { countryName } = route.params;
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
   const BASE_URL = "https://restcountries.com/v3.1/";
   const url = BASE_URL + `/name/${countryName}?fullText=true`;
   const numbro = require("numbro");

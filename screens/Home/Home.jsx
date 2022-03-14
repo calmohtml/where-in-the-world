@@ -1,28 +1,22 @@
 import {
   Text,
-  StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
 import React from "react";
 import { useState, useEffect } from "react";
-import SearchBar from "../../components/SearchBar";
-/* 
-import { useFetch } from "./hooks/useFetch";
-*/
+import styled from "styled-components/native";
+import Header from "../../components/Header";
+// import { useFetch } from "./hooks/useFetch";
 
 export default function Home({ navigation }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
-  /* https://restcountries.com/v3.1/name/{name}?fullText=true */
-  /* https://restcountries.com/v3.1/name/${name.common}?fullText=true */
   const BASE_URL = "https://restcountries.com/v3.1/";
   const url = BASE_URL + "/all";
   const numbro = require("numbro");
-
   /* const { data, loading, error } = useFetch(url); */
 
   useEffect(() => {
@@ -47,21 +41,23 @@ export default function Home({ navigation }) {
     console.log(error);
   }
 
+  const Container = styled.View`
+    flex: 1;
+    margin: 20px 0;
+    flex-direction: column;
+  `;
+
   return (
-    <>
-      <SearchBar />
+    <Container>
+      <Header />
       {loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
       ) : (
-        <ScrollView style={styles.countrylist}>
+        <ScrollView style={{ flex: 1, backgroundColor: "darkorange" }}>
           {data.map(({ cca3, name, population, region, capital }) => (
             <TouchableOpacity
               key={cca3}
-              style={styles.country}
-              /* onPress={() => console.log(name.common)} */
-              /* onPress={() => navigation.navigate("Country")} */
               onPress={() => {
-                /* 1. Navigate to the Details route with params */
                 navigation.navigate("Country", {
                   countryName: name.common,
                 });
@@ -78,7 +74,7 @@ export default function Home({ navigation }) {
           ))}
         </ScrollView>
       )}
-    </>
+    </Container>
   );
 }
 
@@ -97,12 +93,3 @@ export default function Home({ navigation }) {
   /> 
   */
 }
-
-const styles = StyleSheet.create({
-  countrylist: {
-    flex: 2,
-  },
-  country: {
-    marginVertical: 20,
-  },
-});
