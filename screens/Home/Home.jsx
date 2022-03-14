@@ -1,5 +1,7 @@
 import {
   Text,
+  Image,
+  View,
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
@@ -8,6 +10,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import Header from "../../components/Header";
+import { globalStyles } from "../../styles/globalStyles";
 // import { useFetch } from "./hooks/useFetch";
 
 export default function Home({ navigation }) {
@@ -47,6 +50,18 @@ export default function Home({ navigation }) {
     flex-direction: column;
   `;
 
+  const HeadingOne = styled.Text`
+    font-family: "NunitoSans-ExtraBold";
+  `;
+
+  const HeadingTwo = styled.Text`
+    font-family: "NunitoSans-SemiBold";
+  `;
+
+  const HeadingThree = styled.Text`
+    font-family: "NunitoSans-Light";
+  `;
+
   return (
     <Container>
       <Header />
@@ -54,7 +69,7 @@ export default function Home({ navigation }) {
         <ActivityIndicator size="large" color="#00ff00" />
       ) : (
         <ScrollView style={{ flex: 1, backgroundColor: "darkorange" }}>
-          {data.map(({ cca3, name, population, region, capital }) => (
+          {data.map(({ cca3, flags, name, population, region, capital }) => (
             <TouchableOpacity
               key={cca3}
               onPress={() => {
@@ -63,13 +78,29 @@ export default function Home({ navigation }) {
                 });
               }}
             >
-              <Text>{name.common}</Text>
-              <Text>
-                Population:{" "}
-                {numbro(population).format({ thousandSeparated: true })}
-              </Text>
-              <Text>Region: {region}</Text>
-              <Text>Capital: {capital}</Text>
+              <View>
+                <Image
+                  source={{ uri: `${flags.png}` }}
+                  style={{ width: 40, height: 40 }}
+                />
+              </View>
+              <View>
+                <HeadingOne>{name.common}</HeadingOne>
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <HeadingTwo>Population: </HeadingTwo>
+                <HeadingThree>
+                  {numbro(population).format({ thousandSeparated: true })}
+                </HeadingThree>
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <HeadingTwo>Region: </HeadingTwo>
+                <HeadingThree>{region}</HeadingThree>
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <HeadingTwo>Capital: </HeadingTwo>
+                <HeadingThree>{capital}</HeadingThree>
+              </View>
             </TouchableOpacity>
           ))}
         </ScrollView>

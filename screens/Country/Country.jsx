@@ -1,5 +1,6 @@
 import { View, Text, Button, ActivityIndicator, Image } from "react-native";
 import { useState, useEffect } from "react";
+import styled from "styled-components/native";
 
 export default function Country({ route, navigation }) {
   const { countryName } = route.params;
@@ -33,6 +34,18 @@ export default function Country({ route, navigation }) {
     console.log(error);
   }
 
+  const HeadingOne = styled.Text`
+    font-family: "NunitoSans-ExtraBold";
+  `;
+
+  const HeadingTwo = styled.Text`
+    font-family: "NunitoSans-SemiBold";
+  `;
+
+  const HeadingThree = styled.Text`
+    font-family: "NunitoSans-Light";
+  `;
+
   return (
     <View>
       {loading ? (
@@ -53,22 +66,58 @@ export default function Country({ route, navigation }) {
               name: { common, nativeName },
             }) => (
               <View key={cca3}>
-                <Text>{common}</Text>
                 <Image
                   source={{ uri: `${flags.png}` }}
                   style={{ width: 40, height: 40 }}
                 />
-                <Text>Native name: {Object.values(nativeName)[0].common}</Text>
-                <Text>
-                  Population:{" "}
-                  {numbro(population).format({ thousandSeparated: true })}
-                </Text>
-                <Text>Region: {region}</Text>
-                <Text>Subregion: {subregion}</Text>
-                <Text>Capital: {capital}</Text>
-                <Text>Top level domain: {tld[0]}</Text>
-                <Text>Currencies: {Object.values(currencies)[0].name}</Text>
-                <Text>Languages: {Object.values(languages)[0]}</Text>
+
+                <HeadingOne>{common}</HeadingOne>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Native name: </HeadingTwo>
+                  <HeadingThree>
+                    {Object.values(nativeName)[0].common}
+                  </HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Population: </HeadingTwo>
+                  <HeadingThree>
+                    {numbro(population).format({ thousandSeparated: true })}
+                  </HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Region: </HeadingTwo>
+                  <HeadingThree>{region}</HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Subregion: </HeadingTwo>
+                  <HeadingThree>{subregion}</HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Capital: </HeadingTwo>
+                  <HeadingThree>{capital}</HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Top level domain: </HeadingTwo>
+                  <HeadingThree>{tld[0]}</HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Currencies: </HeadingTwo>
+                  <HeadingThree>
+                    {Object.values(currencies)[0].name}
+                  </HeadingThree>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Languages: </HeadingTwo>
+                  <HeadingThree>{Object.values(languages)[0]}</HeadingThree>
+                </View>
               </View>
             )
           )}
