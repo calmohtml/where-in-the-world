@@ -61,17 +61,50 @@ export default function Home({ navigation }) {
     font-family: "NunitoSans-Light";
   `;
 
+  const List = styled.ScrollView`
+    flex: 1;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+    width: 85%;
+  `;
+
+  const CountryContainer = styled.TouchableOpacity`
+    margin: 10px 0;
+    background-color: white;
+    padding: 0px;
+    flex: 1;
+    justify-content: center;
+  `;
+
+  const CountryFlagContainer = styled.View`
+    display: flex;
+    align-items: center;
+  `;
+
+  const CountryFlag = styled.Image`
+    width: 100%;
+    height: 200px;
+  `;
+
+  const CountryName = styled.View`
+    margin: 10px 0;
+  `;
+
+  const CountryInfo = styled.View`
+    flex-direction: row;
+  `;
+
   return (
     <Container>
       <Header />
       {loading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#000" />
       ) : (
         <Fragment>
           <SearchBar />
-          <ScrollView style={{ flex: 1, backgroundColor: "#f1f1f1" }}>
+          <List>
             {data.map(({ cca3, flags, name, population, region, capital }) => (
-              <TouchableOpacity
+              <CountryContainer
                 key={cca3}
                 onPress={() => {
                   navigation.navigate("Country", {
@@ -79,32 +112,29 @@ export default function Home({ navigation }) {
                   });
                 }}
               >
-                <View>
-                  <Image
-                    source={{ uri: `${flags.png}` }}
-                    style={{ width: 40, height: 40 }}
-                  />
-                </View>
-                <View>
+                <CountryFlagContainer>
+                  <CountryFlag source={{ uri: `${flags.png}` }} />
+                </CountryFlagContainer>
+                <CountryName>
                   <HeadingOne>{name.common}</HeadingOne>
-                </View>
-                <View style={{ flexDirection: "row" }}>
+                </CountryName>
+                <CountryInfo>
                   <HeadingTwo>Population: </HeadingTwo>
                   <HeadingThree>
                     {numbro(population).format({ thousandSeparated: true })}
                   </HeadingThree>
-                </View>
-                <View style={{ flexDirection: "row" }}>
+                </CountryInfo>
+                <CountryInfo>
                   <HeadingTwo>Region: </HeadingTwo>
                   <HeadingThree>{region}</HeadingThree>
-                </View>
-                <View style={{ flexDirection: "row" }}>
+                </CountryInfo>
+                <CountryInfo>
                   <HeadingTwo>Capital: </HeadingTwo>
                   <HeadingThree>{capital}</HeadingThree>
-                </View>
-              </TouchableOpacity>
+                </CountryInfo>
+              </CountryContainer>
             ))}
-          </ScrollView>
+          </List>
         </Fragment>
       )}
     </Container>
