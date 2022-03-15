@@ -1,5 +1,4 @@
 import {
-  Text,
   Image,
   View,
   ActivityIndicator,
@@ -7,10 +6,10 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import styled from "styled-components/native";
 import Header from "../../components/Header";
-import { globalStyles } from "../../styles/globalStyles";
+import SearchBar from "../../components/SearchBar";
 // import { useFetch } from "./hooks/useFetch";
 
 export default function Home({ navigation }) {
@@ -68,42 +67,45 @@ export default function Home({ navigation }) {
       {loading ? (
         <ActivityIndicator size="large" color="#00ff00" />
       ) : (
-        <ScrollView style={{ flex: 1, backgroundColor: "darkorange" }}>
-          {data.map(({ cca3, flags, name, population, region, capital }) => (
-            <TouchableOpacity
-              key={cca3}
-              onPress={() => {
-                navigation.navigate("Country", {
-                  countryName: name.common,
-                });
-              }}
-            >
-              <View>
-                <Image
-                  source={{ uri: `${flags.png}` }}
-                  style={{ width: 40, height: 40 }}
-                />
-              </View>
-              <View>
-                <HeadingOne>{name.common}</HeadingOne>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <HeadingTwo>Population: </HeadingTwo>
-                <HeadingThree>
-                  {numbro(population).format({ thousandSeparated: true })}
-                </HeadingThree>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <HeadingTwo>Region: </HeadingTwo>
-                <HeadingThree>{region}</HeadingThree>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <HeadingTwo>Capital: </HeadingTwo>
-                <HeadingThree>{capital}</HeadingThree>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        <Fragment>
+          <SearchBar />
+          <ScrollView style={{ flex: 1, backgroundColor: "#f1f1f1" }}>
+            {data.map(({ cca3, flags, name, population, region, capital }) => (
+              <TouchableOpacity
+                key={cca3}
+                onPress={() => {
+                  navigation.navigate("Country", {
+                    countryName: name.common,
+                  });
+                }}
+              >
+                <View>
+                  <Image
+                    source={{ uri: `${flags.png}` }}
+                    style={{ width: 40, height: 40 }}
+                  />
+                </View>
+                <View>
+                  <HeadingOne>{name.common}</HeadingOne>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Population: </HeadingTwo>
+                  <HeadingThree>
+                    {numbro(population).format({ thousandSeparated: true })}
+                  </HeadingThree>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Region: </HeadingTwo>
+                  <HeadingThree>{region}</HeadingThree>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <HeadingTwo>Capital: </HeadingTwo>
+                  <HeadingThree>{capital}</HeadingThree>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </Fragment>
       )}
     </Container>
   );

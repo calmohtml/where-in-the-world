@@ -1,6 +1,7 @@
-import { View, Text, Button, ActivityIndicator, Image } from "react-native";
+import { View, Button, ActivityIndicator, Image } from "react-native";
 import { useState, useEffect } from "react";
 import styled from "styled-components/native";
+import Header from "../../components/Header";
 
 export default function Country({ route, navigation }) {
   const { countryName } = route.params;
@@ -34,6 +35,12 @@ export default function Country({ route, navigation }) {
     console.log(error);
   }
 
+  const Container = styled.View`
+    flex: 1;
+    margin: 20px 0;
+    flex-direction: column;
+  `;
+
   const HeadingOne = styled.Text`
     font-family: "NunitoSans-ExtraBold";
   `;
@@ -47,9 +54,10 @@ export default function Country({ route, navigation }) {
   `;
 
   return (
-    <View>
+    <Container>
+      <Header />
       {loading ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#000" />
       ) : (
         <View>
           {data.map(
@@ -124,6 +132,6 @@ export default function Country({ route, navigation }) {
         </View>
       )}
       <Button title="Go back" onPress={() => navigation.navigate("Home")} />
-    </View>
+    </Container>
   );
 }
