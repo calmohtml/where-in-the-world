@@ -51,29 +51,34 @@ export default function Home({ navigation }) {
 
   const HeadingOne = styled.Text`
     font-family: "NunitoSans-ExtraBold";
+    font-size: 24px;
   `;
 
   const HeadingTwo = styled.Text`
     font-family: "NunitoSans-SemiBold";
+    font-size: 18px;
   `;
 
   const HeadingThree = styled.Text`
     font-family: "NunitoSans-Light";
+    font-size: 16px;
   `;
 
   const List = styled.ScrollView`
     flex: 1;
     background-color: #f1f1f1;
     margin: 0 auto;
-    width: 85%;
+    width: 80%;
   `;
 
   const CountryContainer = styled.TouchableOpacity`
-    margin: 10px 0;
+    margin: 20px 0;
     background-color: white;
-    padding: 0px;
     flex: 1;
     justify-content: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    overflow: hidden;
   `;
 
   const CountryFlagContainer = styled.View`
@@ -88,9 +93,12 @@ export default function Home({ navigation }) {
 
   const CountryName = styled.View`
     margin: 10px 0;
+    padding: 10px;
   `;
 
   const CountryInfo = styled.View`
+    padding-left: 10px;
+    padding-bottom: 10px;
     flex-direction: row;
   `;
 
