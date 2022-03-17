@@ -1,4 +1,11 @@
-import { View, Button, ActivityIndicator, Image } from "react-native";
+import {
+  View,
+  Button,
+  ActivityIndicator,
+  Image,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import Header from "../../components/Header";
@@ -53,13 +60,51 @@ export default function Country({ route, navigation }) {
     font-family: "NunitoSans-Light";
   `;
 
+  const Country = styled.View`
+    flex: 1;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+    width: 80%;
+  `;
+
+  const CountryFlagContainer = styled.View`
+    display: flex;
+    align-items: center;
+  `;
+
+  const CountryFlag = styled.Image`
+    width: 100%;
+    height: 200px;
+  `;
+
+  const CountryInfoSeparator = styled.View`
+    margin-bottom: 30px;
+  `;
+
+  const CountryName = styled.View`
+    margin: 10px 0;
+    padding: 5px;
+  `;
+
+  const CountryInfo = styled.View`
+    padding-left: 5px;
+    padding-bottom: 10px;
+    flex-direction: row;
+  `;
+
+  const BorderCountry = styled.Text`
+    margin: 0 2.5px;
+  `;
+
   return (
     <Container>
       <Header />
+      <Button title="Go back" onPress={() => navigation.navigate("Home")} />
       {loading ? (
         <ActivityIndicator size="large" color="#000" />
       ) : (
-        <View>
+        <Country>
+          {console.log(data[0].borders)}
           {data.map(
             ({
               cca3,
@@ -71,67 +116,79 @@ export default function Country({ route, navigation }) {
               currencies,
               languages,
               flags,
+              borders,
               name: { common, nativeName },
             }) => (
               <View key={cca3}>
-                <Image
-                  source={{ uri: `${flags.png}` }}
-                  style={{ width: 40, height: 40 }}
-                />
-
-                <HeadingOne>{common}</HeadingOne>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Native name: </HeadingTwo>
-                  <HeadingThree>
-                    {Object.values(nativeName)[0].common}
-                  </HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Population: </HeadingTwo>
-                  <HeadingThree>
-                    {numbro(population).format({ thousandSeparated: true })}
-                  </HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Region: </HeadingTwo>
-                  <HeadingThree>{region}</HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Subregion: </HeadingTwo>
-                  <HeadingThree>{subregion}</HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Capital: </HeadingTwo>
-                  <HeadingThree>{capital}</HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Top level domain: </HeadingTwo>
-                  <HeadingThree>{tld[0]}</HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Currencies: </HeadingTwo>
-                  <HeadingThree>
-                    {Object.values(currencies)[0].name}
-                  </HeadingThree>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                  <HeadingTwo>Languages: </HeadingTwo>
-                  <HeadingThree>{Object.values(languages)[0]}</HeadingThree>
-                </View>
+                <CountryFlagContainer>
+                  <CountryFlag source={{ uri: `${flags.png}` }} />
+                </CountryFlagContainer>
+                {/* Separator */}
+                <CountryName>
+                  <HeadingOne>{common}</HeadingOne>
+                </CountryName>
+                {/* Separator */}
+                <CountryInfoSeparator>
+                  <CountryInfo>
+                    <HeadingTwo>Native name: </HeadingTwo>
+                    <HeadingThree>
+                      {Object.values(nativeName)[0].common}
+                    </HeadingThree>
+                  </CountryInfo>
+                  <CountryInfo>
+                    <HeadingTwo>Population: </HeadingTwo>
+                    <HeadingThree>
+                      {numbro(population).format({ thousandSeparated: true })}
+                    </HeadingThree>
+                  </CountryInfo>
+                  <CountryInfo>
+                    <HeadingTwo>Region: </HeadingTwo>
+                    <HeadingThree>{region}</HeadingThree>
+                  </CountryInfo>
+                  <CountryInfo>
+                    <HeadingTwo>Subregion: </HeadingTwo>
+                    <HeadingThree>{subregion}</HeadingThree>
+                  </CountryInfo>
+                  <CountryInfo>
+                    <HeadingTwo>Capital: </HeadingTwo>
+                    <HeadingThree>{capital}</HeadingThree>
+                  </CountryInfo>
+                </CountryInfoSeparator>
+                {/* Separator */}
+                <CountryInfoSeparator>
+                  <CountryInfo>
+                    <HeadingTwo>Top level domain: </HeadingTwo>
+                    <HeadingThree>{tld[0]}</HeadingThree>
+                  </CountryInfo>
+                  <CountryInfo>
+                    <HeadingTwo>Currencies: </HeadingTwo>
+                    <HeadingThree>
+                      {Object.values(currencies)[0].name}
+                    </HeadingThree>
+                  </CountryInfo>
+                  <CountryInfo>
+                    <HeadingTwo>Languages: </HeadingTwo>
+                    <HeadingThree>{Object.values(languages)[0]}</HeadingThree>
+                  </CountryInfo>
+                </CountryInfoSeparator>
+                {/* Separator */}
+                <CountryInfoSeparator>
+                  <CountryInfo>
+                    <HeadingTwo>Borders: </HeadingTwo>
+                    {borders.map((borderCountry) => (
+                      <HeadingThree key={borderCountry}>
+                        <TouchableOpacity>
+                          <BorderCountry>{borderCountry}</BorderCountry>
+                        </TouchableOpacity>
+                      </HeadingThree>
+                    ))}
+                  </CountryInfo>
+                </CountryInfoSeparator>
               </View>
             )
           )}
-        </View>
+        </Country>
       )}
-      <Button title="Go back" onPress={() => navigation.navigate("Home")} />
     </Container>
   );
 }
