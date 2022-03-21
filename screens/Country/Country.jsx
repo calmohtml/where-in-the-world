@@ -1,9 +1,4 @@
-import {
-  View,
-  Button,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import {
@@ -14,6 +9,8 @@ import {
 
 import {
   Container,
+  ReturnButton,
+  ReturnButtonText,
   CountryScreen,
   CountryFlagContainer,
   CountryFlag,
@@ -57,7 +54,9 @@ export default function Country({ route, navigation }) {
     return (
       <Container>
         <Header />
-        <Button title="Go back" onPress={() => navigation.navigate("Home")} />
+        <ReturnButton onPress={() => navigation.navigate("Home")}>
+          <ReturnButtonText>Go back</ReturnButtonText>
+        </ReturnButton>
         {loading ? (
           <ActivityIndicator size="large" color="#000" />
         ) : (

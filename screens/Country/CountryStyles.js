@@ -6,6 +6,21 @@ export const Container = styled.View`
   flex-direction: column;
 `;
 
+export const ReturnButton = styled.TouchableOpacity`
+  padding: 14px 30px;
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 100%);
+  margin: 10px 250px 10px 40px;
+  justify-content: center;
+`;
+
+export const ReturnButtonText = styled.Text`
+  color: hsl(200, 15%, 8%);
+  font-size: 16px;
+  text-align: center;
+  margin: 0 auto;
+`;
+
 export const CountryScreen = styled.View`
   flex: 1;
   background-color: #f1f1f1;
