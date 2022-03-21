@@ -39,5 +39,8 @@ export const CountryInfo = styled.View`
 `;
 
 export const BorderCountry = styled.Text`
-  margin: 0 2.5px;
+  font-family: "NunitoSans-Light";
+  font-size: 16px;
+  padding: 2px 0;
+  margin: 0 2px;
 `;

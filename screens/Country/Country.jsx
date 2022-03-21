@@ -1,4 +1,9 @@
-import { View, Button, ActivityIndicator } from "react-native";
+import {
+  View,
+  Button,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import {
@@ -57,7 +62,6 @@ export default function Country({ route, navigation }) {
           <ActivityIndicator size="large" color="#000" />
         ) : (
           <CountryScreen>
-            {console.log(data[0].borders)}
             {data.map(
               ({
                 cca3,
@@ -129,9 +133,9 @@ export default function Country({ route, navigation }) {
                     <CountryInfo>
                       <HeadingTwo>Borders: </HeadingTwo>
                       {borders.map((borderCountry) => (
-                        <HeadingThree key={borderCountry}>
+                        <TouchableOpacity key={borderCountry}>
                           <BorderCountry>{borderCountry}</BorderCountry>
-                        </HeadingThree>
+                        </TouchableOpacity>
                       ))}
                     </CountryInfo>
                   </CountryInfoSeparator>
