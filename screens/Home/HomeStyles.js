@@ -4,18 +4,19 @@ export const Container = styled.View`
   flex: 1;
   margin: 20px 0;
   flex-direction: column;
+  background-color: ${(props) => props.theme.background};
 `;
 
 export const List = styled.ScrollView`
   flex: 1;
-  background-color: #f1f1f1;
+  background-color: ${(props) => props.theme.background};
   margin: 0 auto;
   width: 80%;
 `;
 
 export const CountryContainer = styled.TouchableOpacity`
   margin: 20px 0;
-  background-color: white;
+  background-color: ${(props) => props.theme.background};
   flex: 1;
   justify-content: center;
   border: 1px solid white;

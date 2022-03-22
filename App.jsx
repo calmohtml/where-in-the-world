@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Home from "./screens/Home/Home";
 import Country from "./screens/Country/Country";
+import { ThemeProvider } from "styled-components";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -18,17 +19,19 @@ export default function App() {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Country" component={Country} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ThemeProvider theme={{ background: "#000", color: "#fff" }}>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Country" component={Country} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ThemeProvider>
     );
   }
 }
