@@ -5,6 +5,8 @@ import AppLoading from "expo-app-loading";
 import Home from "./screens/Home/Home";
 import Country from "./screens/Country/Country";
 import { ThemeProvider } from "styled-components";
+import themes from "./themes";
+// import { useColorScheme } from "react-native";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -15,11 +17,14 @@ export default function App() {
     "NunitoSans-ExtraBold": require("./assets/fonts/NunitoSans-ExtraBold.ttf"),
   });
 
+  // const deviceTheme = useColorScheme();
+  // const actualTheme = themes[deviceTheme] || themes.dark;
+
   if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
-      <ThemeProvider theme={{ background: "#000", color: "#fff" }}>
+      <ThemeProvider theme={themes.dark}>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="Home"

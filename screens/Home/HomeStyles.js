@@ -1,10 +1,11 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
-  flex: 1;
-  margin: 20px 0;
+export const Container = styled.SafeAreaView`
+  /* flex: 1; */
+  margin: 30px 0;
   flex-direction: column;
   background-color: ${(props) => props.theme.background};
+  height: 100%;
 `;
 
 export const List = styled.ScrollView`

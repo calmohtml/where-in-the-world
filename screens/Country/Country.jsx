@@ -1,6 +1,6 @@
-import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
+import { View, ActivityIndicator, TouchableOpacity } from "react-native";
 import { useState, useEffect } from "react";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import {
   HeadingOne,
   HeadingTwo,
@@ -113,7 +113,7 @@ export default function Country({ route, navigation }) {
                   {/* Separator */}
                   <CountryInfoSeparator>
                     <CountryInfo>
-                      <HeadingTwo>Top Level omain: </HeadingTwo>
+                      <HeadingTwo>Top Level domain: </HeadingTwo>
                       <HeadingThree>{tld[0]}</HeadingThree>
                     </CountryInfo>
                     <CountryInfo>
